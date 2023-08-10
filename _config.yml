@@ -2,9 +2,8 @@ title:              Woo Blog
 email:              ashyonu@gmail.com
 description:        aswooo Blog
 author:             aswooo
-baseurl:            "/startbootstrap-clean-blog-jekyll"
 url:                "https://aswooo.github.io/"
-theme:              jekyll-theme-clean-blog
+theme:              "jekyll-theme-clean-blog"
 
 # Social Profiles
 twitter_username:   
