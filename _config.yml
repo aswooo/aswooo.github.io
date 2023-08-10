@@ -1,0 +1,26 @@
+title:              Woo Blog
+email:              ashyonu@gmail.com
+description:        aswooo Blog
+author:             aswooo
+baseurl:            "/startbootstrap-clean-blog-jekyll"
+url:                "https://aswooo.github.io/"
+theme:              jekyll-theme-clean-blog
+
+# Social Profiles
+twitter_username:   
+github_username:    aswooo
+facebook_username:  
+instagram_username:  
+linkedin_username:
+
+# Add your google-analytics ID here to activate google analytics
+google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+
+# Build settings
+markdown:           kramdown
+paginate:           5
+paginate_path:      "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
