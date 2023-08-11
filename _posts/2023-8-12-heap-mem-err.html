@@ -1,0 +1,33 @@
+---
+layout: post
+title: "EC2 React 배포시 "JavaScript Heap out of memory 오류"
+date: 2023-8-11 10:45:13 -0400
+background: '/img/posts/06.jpg'
+---
+
+<p>AWS를 이용을 하여 프로젝트를 배포하고 있다.</p>
+<p>CodeDeploy를 이용하여 EC2(t2-micro)에서 Docker-Compose를 이용해서 배포하고 있었다.</p>
+<p>본래 배포에 전혀 문제가 없었으나 갑자기 프론트엔드 컨테이너가 죽기 시작했다...</p>
+<h2 class="section-heading">오류</h2>
+<img class="img-fluid" src="https://files.slack.com/files-pri/T02AD1HSVSL-F05LL7SJRC4/image.png" alt="Err Image">
+<p>t2-micro 특성상 기본 제공 램은 1GB인데 이것은 미리 Swap-memory를 이용해서 18기가로 확장을 해놓은 상태로 램이 부족하다? 뭔가 이상하다.</p>
+
+<h2 class="section-heading">삽질</h2>
+
+<p>찾아보니 NodeJs의 heap 메모리의 부족이라고 한다... 근데 나의 로컬에서 빌드할 경우 전혀 문제 없이 실행이 된다. 뭐지,, </p>
+<p>--max_old_space_size=~~~ 이 명령어를 통해서 nodeJs의 메모리를 설정해주면 된다고 하는데,,, </p>
+<p>이걸 넣어보겠다고 Dockerfile에 환경변수로 넣어보고, 컨테이너의 메모리를 늘려보고자 별의별짓을 다해봤고 해당 오류를 검색했을 경우 상위에 나오는 예시는 다 해봤다. </p>
+<p>안.된.다. </p>
+
+<h2 class="section-heading">원인</h2>
+<p>원인은 heap 메모리의 부족이 맞다. 근데 나의 로컬에서 빌드할 경우 전혀 문제 없이 실행이 된다. 뭐지,, </p>
+<p>기본 램에 따라서 NodeJs 메모리의 값이 적용이 된다고 한다. 따라서 메모리가 1GB이기 때문에 아마 nodeJs heap 메모리가 512MB로 적용이 되어있었던것 같다. 컨테이너는 최대 570MB까지 램을 점유했다.</p>
+
+<h2 class="section-heading">해결</h2>
+<p>기본 램에 따라서 NodeJs 메모리의 값이 적용이 된다고 한다. 따라서 메모리가 1GB이기 때문에 아마 nodeJs heap 메모리가 512MB로 적용이 되어있었던것 같다. 컨테이너는 최대 570MB까지 램을 점유했다.</p>
+<img class="img-fluid" src="https://user-images.githubusercontent.com/86454635/260042366-df08f41b-7fbd-4155-aec5-79372f2270fa.png" alt="Err Image">
+<span class="caption text-muted">package.json 파일의 script 시작 부분에 메모리 설정을 해주었다.</span>
+
+<p>이후 해당 컨테이너는 350메가 정도 점유하며 안정적으로 잘 굴러갔다. 이틀간의 삽질은 다행히 일찍 끝났다...</p>
+
+<p><a href="https://stackoverflow.com/questions/44046366/increase-javascript-heap-size-in-create-react-app-project/">참고자료</a></p>
