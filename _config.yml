@@ -4,13 +4,13 @@ gems:
   - jekyll-paginate
 
 # Site settings
-title: "Mediator"
+title: "현우의 기록장"
 description: > # this means to ignore newlines until "email:"
-   A Jekyll theme - Medium inspired
+   
 
 email: hyeunwoo.jang@gmail.com
 #blog logo
-logo: "/assets/images/df_logo.jpg"
+logo: "/assets/images/woo.jpg"
 float_logo: true # true, false (default)
 
 # blog cover
@@ -18,7 +18,7 @@ cover: "/assets/images/cA4aKEIPQrerBnp1yGHv_IMG_9534-3-2.jpg"
 
 name: '장현우'
 author: '장현우'
-author_image: "/assets/images/author.jpg"
+author_image: "/assets/images/woo.jpg"
 
 paginate:	5
 

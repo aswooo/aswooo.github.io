@@ -1,10 +1,9 @@
 ---
 layout: post
 title:  "쿼리 튜닝!"
-date:   2014-08-29 14:34:25
-categories: jekyll update
+date:   2023-09-10 14:34:25
+categories: DataBase
 tags: featured
-image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 ---
 # 쿼리 튜닝
 
